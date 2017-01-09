@@ -1,0 +1,3 @@
+rootProject.name = 'tuer'
+
+include ':app'

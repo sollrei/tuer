@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="vOH-0M-OSn">
+                    <rect key="frame" x="176" y="196" width="123" height="90"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="123" id="Flh-xX-kel" userLabel="width = 123"/>
+                        <constraint firstAttribute="height" constant="90" id="I8q-33-lW0" userLabel="height = 90"/>
+                        <constraint firstAttribute="width" secondItem="vOH-0M-OSn" secondAttribute="height" multiplier="123:90" id="TYJ-AE-d61" userLabel="aspect = 123:90"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="0.93979158608089775" green="0.95927405290861434" blue="0.97002094984054565" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="vOH-0M-OSn" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="9PA-lJ-PBR" userLabel="logo.centerX = centerX"/>
+                <constraint firstItem="vOH-0M-OSn" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="196" id="dwG-xX-4u1" userLabel="logo.centerY = centerY"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="548" y="455"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="logo" width="123" height="91"/>
+    </resources>
+</document>
