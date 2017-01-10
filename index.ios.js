@@ -7,17 +7,15 @@
 import React, {Component} from 'react';
 import {
     AppRegistry,
-    StyleSheet,
-    Text,
-    View
+    StyleSheet
 } from 'react-native';
 
-import Index from './app/index';
+import IndexNav from './app/app';
 
 export default class tuer extends Component {
     render() {
         return (
-            <Index />
+            <IndexNav />
         );
     }
 }

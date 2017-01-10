@@ -45,7 +45,7 @@ export const sty = StyleSheet.create({
         height: 40,
         width: 40,
         marginRight: 20,
-        borderRadius: 20,
+        borderRadius: 6,
         backgroundColor: '#eee'
     },
     diaryName: {
@@ -116,6 +116,56 @@ export const sty = StyleSheet.create({
         flexDirection: 'row',
         flexWrap: 'wrap',
         paddingTop: 10,
+        paddingHorizontal: 5
+    },
+    writeDiary: {
+        height: 100,
+        width: 100,
+        borderRadius: 50,
+        backgroundColor: '#FFF',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: 30
+    },
+    writeTxt: {
+        backgroundColor: '#fff',
+        margin: 20,
+        color: '#285268',
+        fontSize: 24
+    },
+    commentInfo: {
+        flex: 1
+    },
+    commentDate: {
+        position: 'absolute',
+        fontSize: 13,
+        color: '#999',
+        right: 0,
+        top: 0
+    },
+    commentItem: {
+        flexDirection: 'row',
+        padding: 10
+    },
+    commentMain: {
+        backgroundColor: '#fff',
+        padding: 10,
+        flex: 1
+    },
+    comment: {
+        paddingTop: 10
+    },
+    commentAvatar: {
+        height: 40,
+        width: 40,
+        marginRight: 10,
+        borderRadius: 6,
+        backgroundColor: '#eee'
+    },
+    commentReply: {
+        backgroundColor: '#DFE8ED',
+        marginTop: 10,
+        paddingVertical: 10,
         paddingHorizontal: 5
     }
 });

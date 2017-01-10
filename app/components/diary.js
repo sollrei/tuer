@@ -4,9 +4,12 @@ import {
     View,
     Text,
     ListView,
-    Image
+    Image,
+    TouchableOpacity
 } from 'react-native';
 import {sty} from '../style';
+
+import DiaryDetail from '../page/diary';
 
 export default class Diary extends Component {
 
@@ -55,9 +58,12 @@ export default class Diary extends Component {
             )
         }
 
+        const {navigator} = this.props;
+
         return (
             <ListView
                 style={{flex: 1}}
+                contentContainerStyle={{paddingBottom: 80}}
                 dataSource={this.state.dataSource}
                 automaticallyAdjustContentInsets={false}
                 renderRow={(rowData) =>
@@ -69,6 +75,7 @@ export default class Diary extends Component {
                             <View style={sty.diaryAvatar}>
                                 <Image
                                     source={{uri: 'https://unsplash.it/200/200?image=0'}}
+                                    style={sty.diaryAvatar}
                                 />
                             </View>
                             <View>
@@ -76,9 +83,21 @@ export default class Diary extends Component {
                                 <Text style={sty.diaryDate}>{rowData.date}</Text>
                             </View>
                         </View>
-                        <View style={sty.diaryMain}>
-                            <Text style={[sty.ft16, {lineHeight: 24}]}>{rowData.content}</Text>
-                        </View>
+                        <TouchableOpacity
+                            onPress={() => {
+                                navigator.push({
+                                    title: '日记',
+                                    component: DiaryDetail,
+                                    navigationBarHidden: false,
+                                    leftButtonIcon: require('image!arrow_left'),
+                                    onLeftButtonPress: () => navigator.pop()
+                                })
+                            }}
+                        >
+                            <View style={sty.diaryMain}>
+                                <Text style={[sty.ft16, {lineHeight: 24}]}>{rowData.content}</Text>
+                            </View>
+                        </TouchableOpacity>
                         <View style={sty.diaryInfo}>
                             <View style={sty.diaryInfoItem}>
                                 <Image source={require('image!ico_favorite')}/>

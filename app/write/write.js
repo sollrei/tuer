@@ -10,10 +10,17 @@ import {sty} from '../style';
 
 export default class Write extends Component {
     render () {
-        const dom = <View><Text>1212</Text></View>
         return (
-            <View>
-                <Text>写日记咯</Text>
+            <View style={[sty.container, {
+                alignItems: 'center',
+                justifyContent: 'center'
+            }]}>
+                <View style={sty.writeDiary}>
+                    <Text style={sty.writeTxt}>日记</Text>
+                </View>
+                <View style={sty.writeDiary}>
+                    <Text style={sty.writeTxt}>说说</Text>
+                </View>
             </View>
         )
     }

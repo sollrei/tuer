@@ -38,10 +38,10 @@ class Home extends Component {
 
         const dom = <View style={{flexDirection: 'row'}}>
             <View style={{flex: 1, width: width}}>
-                <Diary data='http://192.168.12.47/play/datas/diary.json' />
+                <Diary navigator={this.props.navigator} data='http://192.168.12.47/play/datas/diary.json' />
             </View>
             <View style={{flex: 1, width: width}}>
-                <Diary data='http://192.168.12.47/play/datas/diary.json' />
+                <Diary navigator={this.props.navigator} data='http://192.168.12.47/play/datas/diary.json' />
             </View>
         </View>;
 

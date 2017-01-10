@@ -22,6 +22,9 @@ class Index extends Component {
     }
 
     render () {
+
+        const {navigator} = this.props;
+
         return (
             <View style={{flex: 1,backgroundColor: 'rgba(234,238,241, .35)'}}>
                 <TabBarIOS
@@ -39,7 +42,7 @@ class Index extends Component {
                             })
                         }}
                     >
-                        <Home />
+                        <Home navigator={navigator} />
                     </TabBarIOS.Item>
                     <TabBarIOS.Item
                         title=""
