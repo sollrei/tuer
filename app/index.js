@@ -2,10 +2,23 @@ import React, {Component} from 'react';
 
 import {
     View,
-    Text,
-    TabBarIOS
+    TabBarIOS,
+    NetInfo
 } from 'react-native';
 
+const NOT_NETWORK = "网络不可用，请稍后再试";
+
+const checkNetworkState = (callback) =>{
+    NetInfo.isConnected.fetch().done(
+        (isConnected) => {
+            callback(isConnected);
+        }
+    );
+};
+
+import { connect } from 'react-redux';
+
+import {sty} from './style';
 import Home from './home/home';
 import My from './my/my';
 import Message from './message/message';
@@ -19,14 +32,18 @@ class Index extends Component {
         this.state = {
             selectTab: 'index'
         };
+
+        checkNetworkState((isConnected) => {
+            console.log('con', isConnected)
+        });
     }
 
     render () {
 
-        const {navigator} = this.props;
+        const {navigator, dispatch, user} = this.props;
 
         return (
-            <View style={{flex: 1,backgroundColor: 'rgba(234,238,241, .35)'}}>
+            <View style={sty.container}>
                 <TabBarIOS
                     barTintColor="#fff"
                     translucent={true}
@@ -42,21 +59,21 @@ class Index extends Component {
                             })
                         }}
                     >
-                        <Home navigator={navigator} />
+                        <Home {...this.props} />
                     </TabBarIOS.Item>
-                    <TabBarIOS.Item
-                        title=""
-                        icon={require('image!message')}
-                        selectedIcon={require('image!message_select')}
-                        selected={this.state.selectTab === 'message'}
-                        onPress={() => {
-                            this.setState({
-                                selectTab: 'message'
-                            })
-                        }}
-                    >
-                        <Message />
-                    </TabBarIOS.Item>
+                    {/*<TabBarIOS.Item*/}
+                        {/*title=""*/}
+                        {/*icon={require('image!message')}*/}
+                        {/*selectedIcon={require('image!message_select')}*/}
+                        {/*selected={this.state.selectTab === 'message'}*/}
+                        {/*onPress={() => {*/}
+                            {/*this.setState({*/}
+                                {/*selectTab: 'message'*/}
+                            {/*})*/}
+                        {/*}}*/}
+                    {/*>*/}
+                        {/*<Message />*/}
+                    {/*</TabBarIOS.Item>*/}
                     <TabBarIOS.Item
                         title=""
                         icon={require('image!write')}
@@ -68,7 +85,7 @@ class Index extends Component {
                             })
                         }}
                     >
-                        <Write />
+                        <Write {...this.props}/>
                     </TabBarIOS.Item>
                     <TabBarIOS.Item
                         title=""
@@ -81,7 +98,7 @@ class Index extends Component {
                             })
                         }}
                     >
-                        <Fav />
+                        <Fav {...this.props} />
                     </TabBarIOS.Item>
                     <TabBarIOS.Item
                         title=""
@@ -94,7 +111,7 @@ class Index extends Component {
                             })
                         }}
                     >
-                        <My />
+                        <My navigator={navigator} {...this.props}/>
                     </TabBarIOS.Item>
                 </TabBarIOS>
             </View>
@@ -102,4 +119,15 @@ class Index extends Component {
     }
 }
 
-export default Index;
+const mapStateToProps = (state) => {
+    return {
+        user: state.user
+    }
+};
+
+const ConnectedIndex = connect(mapStateToProps)(Index);
+
+export default ConnectedIndex;
+
+
+// export default Index;

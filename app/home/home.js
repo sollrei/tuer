@@ -9,39 +9,38 @@ import {sty} from '../style';
 
 import Diary from '../components/diary';
 import ScrollTab from '../components/scrollTab';
+import LoginButton from '../components/loginButton';
+
+import url from '../config';
 const {width} = Dimensions.get('window');
 
 class Home extends Component {
 
     constructor (props) {
         super(props);
-        this.state = {
-            allDiary: [],
-            myDiary: []
-        }
-    }
-
-    componentWillMount () {
-        fetch('http://192.168.12.47/play/datas/diary.json', {
-            method: 'GET'
-        })
-            .then((res) => res.json())
-            .then((res) => {
-                this.setState({
-                    allDiary: res,
-                    myDiary: res
-                })
-            });
     }
 
     render () {
 
+        const {navigator, user, dispatch} = this.props;
+
+
         const dom = <View style={{flexDirection: 'row'}}>
             <View style={{flex: 1, width: width}}>
-                <Diary navigator={this.props.navigator} data='http://192.168.12.47/play/datas/diary.json' />
+                {
+                    user.login ?
+                        <Diary
+                            navigator={navigator}
+                            data={url.getDiary + '?userid=1'}
+                        /> :
+                        <LoginButton navigator={navigator} dispatch={dispatch} />
+                }
             </View>
             <View style={{flex: 1, width: width}}>
-                <Diary navigator={this.props.navigator} data='http://192.168.12.47/play/datas/diary.json' />
+                <Diary
+                    navigator={navigator}
+                    data={url.getDiary}
+                />
             </View>
         </View>;
 
@@ -54,6 +53,9 @@ class Home extends Component {
                 }]}/>
             </View>
         )
+
+
+
     }
 }
 

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {
     NavigatorIOS,
-    AsyncStorage
+    // AsyncStorage
 } from 'react-native';
 import ConnectedIndex from './index'
 
@@ -13,17 +13,17 @@ import {appStore} from './store/reducer';
 
 const cs = applyMiddleware(thunk)(createStore);
 
-import {autoRehydrate, persistStore} from 'redux-persist';
+// import {autoRehydrate, persistStore} from 'redux-persist';
 
-function configureStore () {
-    const store = autoRehydrate()(cs)(appStore);
-    persistStore(store, {storage: AsyncStorage},() => {
-        console.log('rehydration complete')});
-    return store;
-}
+// function configureStore () {
+//     const store = autoRehydrate()(cs)(appStore);
+//     persistStore(store, {storage: AsyncStorage},() => {
+//         console.log('rehydration complete')});
+//     return store;
+// }
 
-// const store = cs(appStore);
-const store = configureStore();
+const store = cs(appStore);
+// const store = configureStore();
 
 
 export default class IndexNav extends Component {
@@ -38,10 +38,10 @@ export default class IndexNav extends Component {
                     style={{flex: 1}}
                     navigationBarHidden={true}
                     titleTextColor='#285268'
-                    barTintColor='#fff'
+                    barTintColor='#F8F9FA'
                     tintColor='#8AABBC'
                     shadowHidden={true}
-            />
+                />
             </Provider>
         )
     }

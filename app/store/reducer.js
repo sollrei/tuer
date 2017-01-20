@@ -5,7 +5,7 @@ let userState = {
     login: false,
     user: {
         'name': 'guest',
-        'avatar': ''
+        'userid': '0'
     },
     status: null
 };

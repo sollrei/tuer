@@ -7,7 +7,7 @@ export const USER_LOGOUT = 'USER_LOGIN';
 
 let defaultUser = {
     'name': 'guest',
-    'avatar': ''
+    'userid': '0'
 };
 
 

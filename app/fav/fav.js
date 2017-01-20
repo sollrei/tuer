@@ -6,32 +6,34 @@ import {
 } from 'react-native';
 
 import {sty} from '../style';
-
+import url from '../config';
 import Diary from '../components/diary';
-var HTMLView = require('react-native-htmlview');
-
+import LoginButton from '../components/loginButton';
+// var HTMLView = require('react-native-htmlview');
+// {/*<HTMLView*/}
+// {/*value={htmlContent}*/}
+// {/*/>*/}
 class Fav extends Component {
     render () {
-        // const htmlContent = '<p>大家好新年快乐<a href="http://jsdf.co">&hearts; nice job!</a></p>';
+
+        const {navigator, user, dispatch} = this.props;
+
         return (
             <View style={sty.container}>
                 <View style={sty.header}>
-                    <View
-                        style={sty.headerNav}
-                    >
-                        <View
-                            style={sty.headerActiveView}
-                        >
+                    <View style={sty.headerNav}>
+                        <View style={sty.headerActiveView} >
                             <Text style={sty.headerTxt} >收藏</Text>
                         </View>
                     </View>
                 </View>
-                <View style={{flex: 1}}>
-                    {/*<HTMLView*/}
-                        {/*value={htmlContent}*/}
-                    {/*/>*/}
-                    <Diary data='http://192.168.12.47/play/datas/diary.json' />
-                </View>
+                {
+                    user.login ?
+                    <View style={{flex: 1}}>
+                        <Diary navigator={navigator} data={url.getDiary + '?userid=1'} />
+                    </View> :
+                    <LoginButton navigator={navigator} dispatch={dispatch}/>
+                }
             </View>
         )
     }

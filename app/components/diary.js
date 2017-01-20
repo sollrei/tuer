@@ -5,7 +5,8 @@ import {
     Text,
     ListView,
     Image,
-    TouchableOpacity
+    TouchableOpacity,
+    RefreshControl
 } from 'react-native';
 import {sty} from '../style';
 
@@ -22,23 +23,36 @@ export default class Diary extends Component {
 
         this.state = {
             hasDiary: false,
-            dataSource: ds.cloneWithRows([{}])
-        }
+            count: 0,
+            dataSource: ds.cloneWithRows([{}]),
+            isRefreshing: false
+        };
+
+        this._onFresh = this._onFresh.bind(this);
 
     }
 
     componentWillMount () {
+        this.getDiary();
+    }
+
+    getDiary (callback) {
         const ds = this.ds;
 
         fetch(this.props.data, {
             method: 'GET'
         })
-            .then((res) => res.json())
             .then((res) => {
-                if (res.length) {
+                console.log(res);
+                return res.json()
+            })
+            .then((res) => {
+                console.log(res);
+                if (res.status) {
                     this.setState({
                         hasDiary: true,
-                        dataSource: ds.cloneWithRows(res)
+                        dataSource: ds.cloneWithRows(res.content),
+                        count: res.content.length
                     })
                 } else {
                     this.setState({
@@ -46,15 +60,34 @@ export default class Diary extends Component {
                     })
                 }
 
+                callback && callback();
 
             });
+    }
+
+    _onFresh () {
+        this.setState({
+            isRefreshing: true
+        });
+
+        const _ = this;
+
+        this.getDiary(() => {
+            _.setState({
+                isRefreshing: false
+            });
+        })
     }
 
     render () {
 
         if (!this.state.hasDiary) {
             return (
-                <View><Text>暂无</Text></View>
+                <View style={{alignItems: 'center', paddingTop: 30}}><Text>加载中...</Text></View>
+            )
+        } else if (!this.state.count) {
+            return (
+                <View style={{alignItems: 'center', paddingTop: 30}}><Text>木有...</Text></View>
             )
         }
 
@@ -66,6 +99,15 @@ export default class Diary extends Component {
                 contentContainerStyle={{paddingBottom: 80}}
                 dataSource={this.state.dataSource}
                 automaticallyAdjustContentInsets={false}
+                refreshControl={
+                    <RefreshControl
+                        refreshing={this.state.isRefreshing}
+                        onRefresh={this._onFresh}
+                        tintColor="#8AABBC"
+                        colors={['#F8F9FA', '#8AABBC', '#285268']}
+                        progressBackgroundColor="#8AABBC"
+                    />
+                }
                 renderRow={(rowData) =>
                     <View
                         style={sty.diary}
@@ -74,14 +116,18 @@ export default class Diary extends Component {
                         <View style={sty.diaryHead}>
                             <View style={sty.diaryAvatar}>
                                 <Image
-                                    source={{uri: 'https://unsplash.it/200/200?image=0'}}
+                                    source={{uri: rowData.user[0].avatar}}
                                     style={sty.diaryAvatar}
                                 />
                             </View>
                             <View>
-                                <Text style={sty.diaryName}>{rowData.name}</Text>
+                                <Text style={sty.diaryName}>{rowData.user[0].name}</Text>
                                 <Text style={sty.diaryDate}>{rowData.date}</Text>
                             </View>
+                            <Image
+                                style={sty.diaryWeather}
+                                source={require('image!weather2')}
+                            />
                         </View>
                         <TouchableOpacity
                             onPress={() => {

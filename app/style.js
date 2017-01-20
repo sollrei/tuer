@@ -4,7 +4,8 @@ let {height: screenHeight, width: screenWidth} = Dimensions.get('window');
 
 export const sty = StyleSheet.create({
     container: {
-        flex: 1
+        flex: 1,
+        backgroundColor: '#F8F9FA'
     },
     ft16: {
         fontSize: 16
@@ -55,6 +56,11 @@ export const sty = StyleSheet.create({
     diaryDate: {
         fontSize: 13,
         color: '#999'
+    },
+    diaryWeather: {
+        position: 'absolute',
+        right: 10,
+        top: 10
     },
     diaryMain: {
         paddingHorizontal: 20,
@@ -119,19 +125,30 @@ export const sty = StyleSheet.create({
         paddingHorizontal: 5
     },
     writeDiary: {
-        height: 100,
-        width: 100,
-        borderRadius: 50,
-        backgroundColor: '#FFF',
         alignItems: 'center',
         justifyContent: 'center',
         marginBottom: 30
     },
     writeTxt: {
-        backgroundColor: '#fff',
         margin: 20,
         color: '#285268',
-        fontSize: 24
+        fontSize: 16
+    },
+    writeInput: {
+        fontSize: 16,
+        padding: 10,
+        backgroundColor: '#fff',
+        height: 200
+    },
+    writeSubmit: {
+        // position: 'absolute',
+        left: 0,
+        // bottom: 0,
+        height: 50,
+        backgroundColor: '#8AABBC',
+        width: screenWidth,
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     commentInfo: {
         flex: 1
@@ -167,5 +184,46 @@ export const sty = StyleSheet.create({
         marginTop: 10,
         paddingVertical: 10,
         paddingHorizontal: 5
+    },
+    login: {
+        paddingTop: 100,
+        alignItems: 'center'
+    },
+    loginBox: {
+        margin: 40,
+        width: screenWidth - 80,
+        backgroundColor: '#fff',
+        padding: 10,
+        borderRadius: 4,
+        justifyContent: 'center'
+    },
+    loginTxt: {
+        height: 50,
+        backgroundColor: '#DFE8ED',
+        borderRadius: 4,
+        marginBottom: 10,
+        paddingLeft: 50,
+        paddingRight: 10
+    },
+    loginButton: {
+        height: 50,
+        borderRadius: 4,
+        alignItems: 'center',
+        backgroundColor: '#8AABBC',
+        justifyContent: 'center',
+        marginTop: 30
+    },
+    homeLogin: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        flex: 1
+    },
+    homeLoginBtn: {
+        height: 50,
+        width: 120,
+        borderRadius: 4,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#8AABBC'
     }
 });
