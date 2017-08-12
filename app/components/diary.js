@@ -8,6 +8,10 @@ import {
     TouchableOpacity,
     RefreshControl
 } from 'react-native';
+
+import moment from 'moment';
+
+
 import {sty} from '../style';
 
 import DiaryDetail from '../page/diary';
@@ -43,12 +47,13 @@ export default class Diary extends Component {
             method: 'GET'
         })
             .then((res) => {
-                console.log(res);
+                // console.log(res);
                 return res.json()
             })
             .then((res) => {
-                console.log(res);
+                // console.log(res);
                 if (res.status) {
+                    // console.log(res.content[0].date, moment(res.content[0].date).format('YYYY-MM-DD HH:mm'));
                     this.setState({
                         hasDiary: true,
                         dataSource: ds.cloneWithRows(res.content),
@@ -122,7 +127,7 @@ export default class Diary extends Component {
                             </View>
                             <View>
                                 <Text style={sty.diaryName}>{rowData.user[0].name}</Text>
-                                <Text style={sty.diaryDate}>{rowData.date}</Text>
+                                <Text style={sty.diaryDate}>{moment(rowData.date).format('YYYY-MM-DD HH:mm')}</Text>
                             </View>
                             <Image
                                 style={sty.diaryWeather}

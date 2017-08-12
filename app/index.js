@@ -21,7 +21,7 @@ import { connect } from 'react-redux';
 import {sty} from './style';
 import Home from './home/home';
 import My from './my/my';
-import Message from './message/message';
+// import Message from './message/message';
 import Fav from './fav/fav';
 import Write from './write/write';
 
